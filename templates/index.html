@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>オリエンテーリングコース可視化</title><style>{% include "style.css" %}</style></head>
+<body><main class="container">
+  <header class="hero"><span class="eyebrow">COURSE VISUALIZER</span><h1>オリエンテーリング<br>コース可視化</h1><p>コンペティションプログラムが出力したJSONから、道路ネットワーク上のコースと評価結果を描画します。</p></header>
+  <section class="card upload-card">
+    <h2>コースJSONを読み込む</h2>
+    <form method="post" enctype="multipart/form-data">
+      <label class="file-field"><span>JSONファイル</span><input type="file" name="course_json" accept=".json,application/json" required></label>
+      <button type="submit">コースを可視化</button>
+    </form>
+    <p class="note">UTF-8のJSON（最大 {{ max_upload_mb }} MB）を選択してください。アップロード内容や生成画像は永続保存されません。</p>
+    <p class="note">詳しい入力形式は、配布物に含まれる <code>JSON_FORMAT.md</code> を参照してください。</p>
+  </section>
+</main></body></html>

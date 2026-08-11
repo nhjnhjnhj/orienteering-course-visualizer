@@ -1,0 +1,13 @@
+.git/
+.venv/
+.streamlit/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+.env
+*.pem
+*service-account*.json
+course_preview.png
+docs/
+original/

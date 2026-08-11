@@ -1,0 +1,16 @@
+[project]
+name = "orienteering-course-visualizer"
+version = "0.1.0"
+description = "Cloud Run app for visualizing orienteering course selection results"
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "functions-framework==3.9.2",
+    "jinja2==3.1.6",
+    "matplotlib==3.11.1",
+    "networkx==3.6.1",
+    "pandas==3.0.5",
+]
+
+[tool.uv]
+package = false

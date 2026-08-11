@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>可視化結果</title><style>{% include "style.css" %}</style></head>
+<body><main class="container wide">
+  <div class="result-head"><div><span class="eyebrow">VISUALIZATION RESULT</span><h1>コース可視化結果</h1></div><a class="button secondary" href="./">別のJSONを読み込む</a></div>
+  {% if warnings %}<section class="warnings"><h2>確認事項</h2>{% for warning in warnings %}<p>{{ warning }}</p>{% endfor %}</section>{% endif %}
+  <section class="metrics">
+    <article><span>コントロール数</span><strong>{{ course.n_controls|int }}<small> 件</small></strong></article>
+    <article><span>総距離</span><strong>{{ "{:,.1f}".format(course.total_distance_m|float) }}<small> m</small></strong></article>
+    <article><span>推定時間</span><strong>{{ "{:.1f}".format(course.estimated_time_min|float) }}<small> 分</small></strong></article>
+    <article><span>累積登り</span><strong>{{ "{:.1f}".format(course.total_gain_m|float) }}<small> m</small></strong></article>
+    <article><span>fitness</span><strong>{{ "{:.6f}".format(course.fitness|float) }}</strong></article>
+  </section>
+  <section class="card map-card"><div class="section-head"><h2>コース地図</h2><a class="button" href="data:image/png;base64,{{ image_base64 }}" download="course_best.png">PNGをダウンロード</a></div><img class="course-map" src="data:image/png;base64,{{ image_base64 }}" alt="生成されたオリエンテーリングコース地図"></section>
+  <section class="card"><h2>コントロール地点</h2><div class="table-wrap"><table><thead><tr><th>順番</th><th>名前</th><th>種別</th><th>緯度</th><th>経度</th><th>魅力</th></tr></thead><tbody>{% for control in controls %}<tr><td>{{ control.order }}</td><td>{{ control.name }}</td><td>{{ control.feature }}</td><td>{{ "{:.7f}".format(control.lat|float) }}</td><td>{{ "{:.7f}".format(control.lon|float) }}</td><td>{{ "{:.2f}".format(control.attraction_score|float) }}</td></tr>{% endfor %}</tbody></table></div></section>
+  <section class="card"><h2>目的関数値と重み</h2><div class="table-wrap"><table><thead><tr><th>目的関数</th><th>意味</th><th>値</th><th>重み</th><th>重み付き値</th></tr></thead><tbody>{% for item in objectives %}<tr><td><code>{{ item.key }}</code></td><td>{{ item.label }}</td><td>{{ "{:.3f}".format(item.value) }}</td><td>{{ "{:.2f}".format(item.weight) }}</td><td>{{ "{:.3f}".format(item.weighted) }}</td></tr>{% endfor %}</tbody></table></div></section>
+</main></body></html>

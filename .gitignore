@@ -1,0 +1,13 @@
+# Private location data (required only in the local/deployment environment)
+data/*.csv
+samples/*.json
+
+# Local and generated files
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+course_preview.png
+original/
+smoke_test.py
