@@ -11,3 +11,10 @@ __pycache__/
 course_preview.png
 docs/
 original/
+README.md
+JSON_FORMAT.md
+pyproject.toml
+uv.lock
+samples/
+smoke_test.py
+data/.gitkeep

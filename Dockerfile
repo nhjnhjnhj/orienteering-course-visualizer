@@ -1,3 +1,8 @@
+FROM python:3.12-slim AS builder
+
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir --prefix=/install -r /tmp/requirements.txt
+
 FROM python:3.12-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -11,8 +16,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends fonts-noto-cjk \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+COPY --from=builder /install /usr/local
 
 COPY main.py course_visualizer.py ./
 COPY templates ./templates

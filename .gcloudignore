@@ -1,0 +1,19 @@
+# Files excluded only from Cloud Build source uploads.
+.gcloudignore
+.git/
+.gitignore
+.DS_Store
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+samples/
+original/
+smoke_test.py
+course_preview.png
+README.md
+JSON_FORMAT.md
+pyproject.toml
+uv.lock
+.dockerignore
+data/.gitkeep
