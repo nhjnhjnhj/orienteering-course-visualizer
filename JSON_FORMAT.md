@@ -37,7 +37,6 @@
 | `feature` | 文字列 | 地点の種別 |
 | `lat` | 数値 | 緯度 |
 | `lon` | 数値 | 経度 |
-| `attraction_score` | 数値 | 魅力スコア |
 
 ## `course_nodes`
 

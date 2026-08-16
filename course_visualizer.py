@@ -42,7 +42,7 @@ REQUIRED_COURSE_KEYS = {
     "course_nodes",
 }
 REQUIRED_OBJECTIVE_KEYS = {"f_map", "f_dist", "f_time", "f_route"}
-REQUIRED_CONTROL_KEYS = {"name", "feature", "lat", "lon", "attraction_score"}
+REQUIRED_CONTROL_KEYS = {"name", "feature", "lat", "lon"}
 
 
 class CourseDataError(ValueError):
@@ -230,10 +230,6 @@ def validate_course(course: dict[str, Any], graph: nx.DiGraph | None = None) -> 
             raise CourseDataError(f"{index}番目の feature は文字列にしてください。")
         _require_numeric(control["lat"], f"controls[{index - 1}].lat")
         _require_numeric(control["lon"], f"controls[{index - 1}].lon")
-        _require_numeric(
-            control["attraction_score"],
-            f"controls[{index - 1}].attraction_score",
-        )
 
     objectives = course["objectives"]
     weights = course["weights"]
@@ -534,8 +530,8 @@ def build_markdown_report(course: dict[str, Any]) -> str:
             "",
             "## コントロール地点一覧",
             "",
-            "| 順番 | 名前 | 種別 | 緯度 | 経度 | 魅力スコア |",
-            "|---:|---|---|---:|---:|---:|",
+            "| 順番 | 名前 | 種別 | 緯度 | 経度 |",
+            "|---:|---|---|---:|---:|",
         ]
     )
 
@@ -544,8 +540,7 @@ def build_markdown_report(course: dict[str, Any]) -> str:
             "| "
             f"{index} | {_escape_markdown_cell(control['name'])} | "
             f"{_escape_markdown_cell(control['feature'])} | "
-            f"{float(control['lat']):.7f} | {float(control['lon']):.7f} | "
-            f"{float(control['attraction_score']):.2f} |"
+            f"{float(control['lat']):.7f} | {float(control['lon']):.7f} |"
         )
 
     lines.extend(
